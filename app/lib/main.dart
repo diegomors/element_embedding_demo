@@ -28,9 +28,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    final export = js_util.createDartExport(this);
-    js_util.setProperty(js_util.globalThis, '_appState', export);
-    js_util.callMethod<void>(js_util.globalThis, '_stateSet', []);
+    parentSetup();
+  }
+
+  void parentSetup() {
+    try {
+      final export = js_util.createDartExport(this);
+      js_util.setProperty(js_util.globalThis, '_appState', export);
+      js_util.callMethod<void>(js_util.globalThis, '_stateSet', []);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
