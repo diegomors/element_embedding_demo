@@ -89,6 +89,7 @@
           onEntrypointLoaded: async function (engineInitializer) {
             let appRunner = await engineInitializer.initializeEngine({
               hostElement: target,
+              assetBase: "https://demo-app.flutterhub.dev/",
             });
             await appRunner.runApp();
           },
